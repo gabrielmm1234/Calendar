@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import ReduxThunk from 'redux-thunk';
 import reducers from './reducers';
 import Header from './components/Header';
+import DayNames from './components/DayNames';
 
 class App extends Component {
 	render() {
@@ -14,6 +15,7 @@ class App extends Component {
 			<Provider store={store}>
 				<View style={styles.container}>
 					<Header />
+					<DayNames />
 				</View>
 			</Provider>
 		);
