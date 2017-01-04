@@ -1,0 +1,1 @@
+export const FIRST_STATE = 'first_state';

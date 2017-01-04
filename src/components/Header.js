@@ -2,25 +2,18 @@ import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import moment from 'moment';
+import { firstState } from '../actions';
 
 class Header extends Component {
-
-	static defaultProps = {
-		startDate: moment().format('YYYY-MM-DD'),
-		selectedDate: moment().format(),
-		titleFormat: 'MMMM YYYY'
+	componentWillMount() {
+		this.props.firstState();
 	}
-
-	state = {
-	    currentMonthMoment: moment(this.props.startDate),
-	    selectedMoment: moment(this.props.selectedDate),
-  	};
-
+	
 	render() {
 		return (
 			<View style={styles.calendarControls}>
 		        <Text style={styles.title}>
-		          {this.state.currentMonthMoment.format(this.props.titleFormat)}
+		          {this.props.currentMonthMoment.format(this.props.titleFormat)}
 		        </Text>
 	      	</View>
 	    );
@@ -49,4 +42,9 @@ const styles = {
   	}	
 }
 
-export default connect(null, {})(Header);
+const mapStateToProps = state => {
+	const { currentMonthMoment, selectedMoment, titleFormat } = state.initialState;
+	return { currentMonthMoment, selectedMoment, titleFormat };
+};
+
+export default connect(mapStateToProps, { firstState })(Header);
