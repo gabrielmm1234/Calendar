@@ -6,6 +6,7 @@ import ReduxThunk from 'redux-thunk';
 import reducers from './reducers';
 import Header from './components/Header';
 import DayNames from './components/DayNames';
+import Days from './components/Days';
 
 class App extends Component {
 	render() {
@@ -16,6 +17,7 @@ class App extends Component {
 				<View style={styles.container}>
 					<Header />
 					<DayNames />
+					<Days />
 				</View>
 			</Provider>
 		);
@@ -26,7 +28,7 @@ const styles = {
 	container: {
 		flex: 1,
     	paddingTop: 20,
-    	backgroundColor: '#f7f7f7'
+    	backgroundColor: '#cce6ff'
 	}
 }
 

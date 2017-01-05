@@ -50,7 +50,7 @@ const styles = {
     fontSize: 15,
     textAlign: 'center',
     marginVertical: 5,
-    color: '#4da6ff',
+    color: '#7300e6',
   }
 }
 
