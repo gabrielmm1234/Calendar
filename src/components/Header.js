@@ -53,6 +53,7 @@ const styles = {
   	controlButtonText: {
     	margin: 10,
     	fontSize: 15,
+    	color: '#3399ff'
   	},
 
   	title: {
