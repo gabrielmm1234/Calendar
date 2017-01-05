@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import { firstState } from '../actions';
@@ -12,9 +12,25 @@ class Header extends Component {
 	render() {
 		return (
 			<View style={styles.calendarControls}>
+				<TouchableOpacity
+	            onPress={this.onPrev}
+	          	>
+		            <Text style={styles.controlButtonText}>
+		              Prev
+		            </Text>
+	          	</TouchableOpacity>
+
 		        <Text style={styles.title}>
 		          {this.props.currentMonthMoment.format(this.props.titleFormat)}
 		        </Text>
+
+		        <TouchableOpacity
+	            onPress={this.onNext}
+	          	>
+		            <Text style={styles.controlButtonText}>
+		              Next
+		            </Text>
+	          </TouchableOpacity>
 	      	</View>
 	    );
 	}
@@ -32,6 +48,11 @@ const styles = {
     	shadowOpacity: 0.2,
     	elevation: 2,
     	position: 'relative'
+  	},
+
+  	controlButtonText: {
+    	margin: 10,
+    	fontSize: 15,
   	},
 
   	title: {
