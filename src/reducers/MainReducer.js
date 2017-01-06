@@ -1,6 +1,7 @@
 import { 
   FIRST_STATE,
-  MONTH_DAYS_STATE
+  MONTH_DAYS_STATE,
+  NEXT_MOMENT_STATE
 } from '../actions/types';
 import moment from 'moment';
 
@@ -18,6 +19,8 @@ export default (state = INITIAL_STATE, action) => {
       return INITIAL_STATE;
     case MONTH_DAYS_STATE:
       return { ...state, calendarDates: [moment(state.currentMonthMoment)] };
+    case NEXT_MOMENT_STATE:
+      return { ...state, currentMonthMoment: action.payload };
     default:
       return state;
   }

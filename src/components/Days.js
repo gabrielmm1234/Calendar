@@ -11,7 +11,7 @@ class Days extends Component {
 
 	componentWillMount() {
 		this.props.buildMonthDays();
-	}
+	}  
 
 	renderMonthView(argMoment) {
 

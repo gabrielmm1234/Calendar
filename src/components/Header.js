@@ -2,18 +2,30 @@ import React, { Component } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import moment from 'moment';
-import { firstState } from '../actions';
+import { firstState, updateCurrentMoment, buildMonthDays } from '../actions';
 
 class Header extends Component {
 	componentWillMount() {
 		this.props.firstState();
+	}
+
+	onButtonPrevPress() {
+		const nextMoment = moment(this.props.currentMonthMoment).subtract(1, 'month');
+		this.props.updateCurrentMoment(nextMoment);
+		this.props.buildMonthDays();
+	}
+
+	onButtonNextPress() {
+		const nextMoment = moment(this.props.currentMonthMoment).add(1, 'month');
+		this.props.updateCurrentMoment(nextMoment);
+		this.props.buildMonthDays();
 	}
 	
 	render() {
 		return (
 			<View style={styles.calendarControls}>
 				<TouchableOpacity
-	            onPress={this.onPrev}
+	            onPress={this.onButtonPrevPress.bind(this)}
 	          	>
 		            <Text style={styles.controlButtonText}>
 		              Prev
@@ -25,7 +37,7 @@ class Header extends Component {
 		        </Text>
 
 		        <TouchableOpacity
-	            onPress={this.onNext}
+	            onPress={this.onButtonNextPress.bind(this)}
 	          	>
 		            <Text style={styles.controlButtonText}>
 		              Next
@@ -69,4 +81,4 @@ const mapStateToProps = state => {
 	return { currentMonthMoment, selectedMoment, titleFormat };
 };
 
-export default connect(mapStateToProps, { firstState })(Header);
+export default connect(mapStateToProps, { firstState, updateCurrentMoment, buildMonthDays })(Header);

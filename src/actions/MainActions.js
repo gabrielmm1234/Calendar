@@ -1,7 +1,8 @@
 import { 
 	FIRST_STATE,
 	DAY_NAME_STATE,
-	MONTH_DAYS_STATE
+	MONTH_DAYS_STATE,
+	NEXT_MOMENT_STATE
 } from './types';
 
 export const firstState = () => {
@@ -19,5 +20,12 @@ export const dayNameState = () => {
 export const buildMonthDays = () => {
 	return {
 		type: MONTH_DAYS_STATE
+	};
+};
+
+export const updateCurrentMoment  = (moment) => {
+	return {
+		type: NEXT_MOMENT_STATE,
+		payload: moment
 	};
 };
