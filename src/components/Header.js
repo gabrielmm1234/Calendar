@@ -46,6 +46,8 @@ class Header extends Component {
 		return (
 			<View style={styles.calendarControls}>
 				<Toolbar
+				style={{centerElementContainer: {justifyContent: 'center',
+    	alignItems: 'center'}}}
 			        leftElement={this.renderPrevButton()}
 			        rightElement={this.renderNextButton()}
 			        centerElement={this.props.currentMonthMoment.format(this.props.titleFormat)}
