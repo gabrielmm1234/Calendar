@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import { firstState, updateCurrentMoment, buildMonthDays } from '../actions';
+import { Toolbar } from 'react-native-material-ui';
 
 class Header extends Component {
 	componentWillMount() {
@@ -20,29 +21,35 @@ class Header extends Component {
 		this.props.updateCurrentMoment(nextMoment);
 		this.props.buildMonthDays();
 	}
+
+	renderPrevButton() {
+		return (
+			<TouchableOpacity onPress={this.onButtonPrevPress.bind(this)}>
+		        <Text style={styles.controlButtonText}>
+		        	Prev
+		        </Text>
+	        </TouchableOpacity>
+		);
+	}
+
+	renderNextButton() {
+		return (
+			<TouchableOpacity onPress={this.onButtonNextPress.bind(this)}>
+		    	<Text style={styles.controlButtonText}>
+		        	Next
+		        </Text>
+	        </TouchableOpacity>
+		);
+	}
 	
 	render() {
 		return (
 			<View style={styles.calendarControls}>
-				<TouchableOpacity
-	            onPress={this.onButtonPrevPress.bind(this)}
-	          	>
-		            <Text style={styles.controlButtonText}>
-		              Prev
-		            </Text>
-	          	</TouchableOpacity>
-
-		        <Text style={styles.title}>
-		          {this.props.currentMonthMoment.format(this.props.titleFormat)}
-		        </Text>
-
-		        <TouchableOpacity
-	            onPress={this.onButtonNextPress.bind(this)}
-	          	>
-		            <Text style={styles.controlButtonText}>
-		              Next
-		            </Text>
-	          </TouchableOpacity>
+				<Toolbar
+			        leftElement={this.renderPrevButton()}
+			        rightElement={this.renderNextButton()}
+			        centerElement={this.props.currentMonthMoment.format(this.props.titleFormat)}
+      			/>
 	      	</View>
 	    );
 	}
@@ -65,7 +72,7 @@ const styles = {
   	controlButtonText: {
     	margin: 10,
     	fontSize: 15,
-    	color: '#3399ff'
+    	color: '#ffffff'
   	},
 
   	title: {
