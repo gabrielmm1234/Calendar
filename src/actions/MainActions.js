@@ -2,7 +2,8 @@ import {
 	FIRST_STATE,
 	DAY_NAME_STATE,
 	MONTH_DAYS_STATE,
-	NEXT_MOMENT_STATE
+	NEXT_MOMENT_STATE,
+	UPDATE_SELECTED_MOMENT
 } from './types';
 
 export const firstState = () => {
@@ -27,5 +28,12 @@ export const updateCurrentMoment  = (moment) => {
 	return {
 		type: NEXT_MOMENT_STATE,
 		payload: moment
+	};
+};
+
+export const updateSelectedMoment  = (date) => {
+	return {
+		type: UPDATE_SELECTED_MOMENT,
+		payload: date
 	};
 };

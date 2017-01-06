@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
-import { buildMonthDays } from '../actions';
+import { buildMonthDays, updateSelectedMoment } from '../actions';
 import moment from 'moment';
 import Day from './Day';
 
@@ -12,6 +12,10 @@ class Days extends Component {
 	componentWillMount() {
 		this.props.buildMonthDays();
 	}  
+
+	selectDate(date) {
+		this.props.updateSelectedMoment(date);
+	}
 
 	renderMonthView(argMoment) {
 
@@ -45,7 +49,7 @@ class Days extends Component {
 	            isWeekend={isoWeekday === 0 || isoWeekday === 6}
 	            key={`${renderIndex}`}
 	            onPress={() => {
-              		console.log('Pressionado.');
+              		this.selectDate(moment(startOfArgMonthMoment).set('date', dayIndex + 1));
             	}}
 	            caption={`${dayIndex + 1}`}
 	            isToday={argMonthIsToday && (dayIndex === todayIndex)}
@@ -104,4 +108,4 @@ const mapStateToProps = state => {
 	return { currentMonthMoment, selectedMoment, titleFormat, calendarDates, today, weekStart: state.dayNameState.firstDay };
 };
 
-export default connect(mapStateToProps, { buildMonthDays })(Days);
+export default connect(mapStateToProps, { buildMonthDays, updateSelectedMoment })(Days);

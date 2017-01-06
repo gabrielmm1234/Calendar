@@ -22,7 +22,7 @@ const styles = {
 		color: 'red',
 	},
 	selectedDayText: {
-		color: 'red',
+		color: 'blue',
 		fontWeight: 'bold',
 	},
 	weekendDayText: {

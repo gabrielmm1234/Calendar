@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import ReduxThunk from 'redux-thunk';
@@ -7,6 +7,7 @@ import reducers from './reducers';
 import Header from './components/Header';
 import DayNames from './components/DayNames';
 import Days from './components/Days';
+import moment from 'moment';
 
 class App extends Component {
 	render() {

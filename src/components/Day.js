@@ -9,7 +9,7 @@ import styles from '../styles';
 
 export default class Day extends Component {
 
-  dayTextStyle = (isWeekend, isSelected, isToday, event) => {
+  dayTextStyle = (isWeekend, isSelected, isToday) => {
     const dayTextStyle = [styles.day];
     
     if (isToday && !isSelected) {
