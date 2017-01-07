@@ -1,4 +1,5 @@
 import { Dimensions } from 'react-native';
+import { COLOR } from 'react-native-material-ui';
 
 const DEVICE_WIDTH = Dimensions.get('window').width;
 
@@ -19,10 +20,10 @@ const styles = {
     	borderTopColor: '#e9e9e9',
   	},
 	currentDayText: {
-		color: 'red',
+		color: '#F44336',
 	},
 	selectedDayText: {
-		color: 'blue',
+		color: '#009688',
 		fontWeight: 'bold',
 	},
 	weekendDayText: {

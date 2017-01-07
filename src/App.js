@@ -8,12 +8,9 @@ import Header from './components/Header';
 import DayNames from './components/DayNames';
 import Days from './components/Days';
 import moment from 'moment';
-import { COLOR, ThemeProvider } from 'react-native-material-ui';
+import { COLOR, ThemeProvider, BottomNavigation } from 'react-native-material-ui';
 
 const uiTheme = {
-    palette: {
-        primaryColor: COLOR.green500,
-    },
     toolbar: {
         container: {
         	flex: 1
@@ -22,6 +19,8 @@ const uiTheme = {
 };
 
 class App extends Component {
+	state = {active: 'today'};
+
 	render() {
 		const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
 
@@ -42,7 +41,6 @@ class App extends Component {
 const styles = {
 	container: {
 		flex: 1,
-    	backgroundColor: '#cce6ff'
 	}
 }
 

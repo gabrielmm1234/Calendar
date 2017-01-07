@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { dayNameState } from '../actions';
+import { COLOR } from 'react-native-material-ui';
 
 class DayNames extends Component {
 
@@ -34,7 +35,6 @@ class DayNames extends Component {
 const styles = {
   dayNamesStyle: {
     flexDirection: 'row',
-    borderTopWidth: 1,
     borderBottomWidth: 1
   },
 
@@ -50,7 +50,8 @@ const styles = {
     fontSize: 15,
     textAlign: 'center',
     marginVertical: 5,
-    color: '#7300e6',
+    fontWeight: 'bold',
+    color: '#00ACC1',
   }
 }
 
