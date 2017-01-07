@@ -27,7 +27,7 @@ const styles = {
 		fontWeight: 'bold',
 	},
 	weekendDayText: {
-		color: '#3399ff',
+		color: '#00ACC1',
 	}
 }
 

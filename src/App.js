@@ -7,6 +7,7 @@ import reducers from './reducers';
 import Header from './components/Header';
 import DayNames from './components/DayNames';
 import Days from './components/Days';
+import EventButton from './components/EventButton';
 import moment from 'moment';
 import { COLOR, ThemeProvider, BottomNavigation } from 'react-native-material-ui';
 
@@ -31,6 +32,9 @@ class App extends Component {
 						<Header />
 						<DayNames />
 						<Days />
+						<View style={styles.container}>
+        					<EventButton />
+    					</View>
 					</View>
 				</Provider>
 			</ThemeProvider>
