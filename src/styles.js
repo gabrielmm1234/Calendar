@@ -10,6 +10,7 @@ const styles = {
 	},
 	day: {
 		fontSize: 16,
+		margin: 5,
 		alignSelf: 'center',
 	},
 	dayButton: {
