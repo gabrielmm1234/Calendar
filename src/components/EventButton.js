@@ -1,25 +1,83 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Modal } from 'react-native';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import { ActionButton } from 'react-native-material-ui';
+import { updateEvent } from '../actions';
+import { CardSection } from './CardSection';
+import { Button } from './Button';
+import { Input } from './Input';
 
 class EventButton extends Component {
+	state = { showModal: false };
 
 	onButtonPress() {
-		console.log(this.props.selectedMoment);
+		this.setState({ showModal: true });
 	}
+
+	onAccept() {
+		console.log(this.props.selectedMoment);
+		console.log(this.props.event);
+		this.setState({ showModal: false });
+  	}
+
+    onDecline() {
+    	this.setState({ showModal: false });
+    }
 
 	render() {
 		return (
-			<ActionButton onPress={this.onButtonPress.bind(this)} />
+			<View style={styles.container}>
+				<ActionButton onPress={this.onButtonPress.bind(this)} />
+
+				<Modal
+			      visible={this.state.showModal}
+			      transparent
+			      animationType="slide"
+			      onRequestClose={() => {}}
+			    >
+			      <View style={styles.containerStyle}>
+
+			        <CardSection style={styles.cardSectionStyle}>
+			          <Input
+			            label="Event"
+			            placeholder="Add Event"
+			            value={this.props.event}
+			            onChangeText={value => this.props.updateEvent({ prop: 'event', value })}
+			          />
+			        </CardSection>
+
+			        <CardSection>
+			          <Button onPress={this.onAccept.bind(this)}>Add</Button>
+			          <Button onPress={this.onDecline.bind(this)}>Cancel</Button>
+			        </CardSection>
+
+			      </View>
+    			</Modal>
+	        </View>
 		);
 	}
 }
 
+const styles = {
+	container: {
+		flex: 1,
+	},
+	cardSectionStyle: {
+    	justifyContent: 'center'
+  	},
+  	containerStyle: {
+	    backgroundColor: 'rgba(0, 0, 0, 0.75)',
+	    position: 'relative',
+	    flex: 1,
+	    height: 500,
+	    justifyContent: 'center'
+  	}
+}
+
 const mapStateToProps = state => {
 	const { currentMonthMoment, selectedMoment } = state.initialState;
-	return { currentMonthMoment, selectedMoment };
+	return { currentMonthMoment, selectedMoment, event: state.modalState.event };
 };
 
-export default connect(mapStateToProps, {})(EventButton);
+export default connect(mapStateToProps, { updateEvent })(EventButton);

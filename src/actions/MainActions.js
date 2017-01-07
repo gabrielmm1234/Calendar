@@ -3,7 +3,8 @@ import {
 	DAY_NAME_STATE,
 	MONTH_DAYS_STATE,
 	NEXT_MOMENT_STATE,
-	UPDATE_SELECTED_MOMENT
+	UPDATE_SELECTED_MOMENT,
+	UPDATE_EVENT
 } from './types';
 
 export const firstState = () => {
@@ -37,3 +38,11 @@ export const updateSelectedMoment  = (date) => {
 		payload: date
 	};
 };
+
+export const updateEvent  = ({ prop,value }) => {
+	return {
+		type: UPDATE_EVENT,
+		payload: { prop, value }
+	};
+};
+

@@ -32,9 +32,7 @@ class App extends Component {
 						<Header />
 						<DayNames />
 						<Days />
-						<View style={styles.container}>
-        					<EventButton />
-    					</View>
+        				<EventButton />
 					</View>
 				</Provider>
 			</ThemeProvider>
