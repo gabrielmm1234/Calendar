@@ -39,10 +39,9 @@ export const updateSelectedMoment  = (date) => {
 	};
 };
 
-export const updateEvent  = ({ prop,value }) => {
+export const updateEvent  = ({ prop, value }) => {
 	return {
 		type: UPDATE_EVENT,
 		payload: { prop, value }
 	};
 };
-

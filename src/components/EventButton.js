@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Modal } from 'react-native';
 import { connect } from 'react-redux';
 import moment from 'moment';
+import firebase from 'firebase';
 import { ActionButton } from 'react-native-material-ui';
 import { updateEvent } from '../actions';
 import { CardSection } from './CardSection';
@@ -16,8 +17,8 @@ class EventButton extends Component {
 	}
 
 	onAccept() {
-		console.log(this.props.selectedMoment);
-		console.log(this.props.event);
+		const formatDate  = moment(this.props.selectedMoment).format('DD/MM/YYYY');
+		firebase.database().ref(`/${formatDate}/event`).push( this.props.event )
 		this.setState({ showModal: false });
   	}
 
