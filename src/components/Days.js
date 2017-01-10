@@ -116,11 +116,13 @@ class Days extends Component {
 		return (
 			<View>
             	{this.props.calendarDates.map((date) => this.renderMonthView(moment(date)))}
-            	<ListView 
-				enableEmptySections
-				dataSource={this.dataSource}
-				renderRow={this.renderRow}
-				/>
+	            	<ListView 
+	            	scrollEnabled
+	            	contentContainerStyle={styles.listViewContent}
+					enableEmptySections
+					dataSource={this.dataSource}
+					renderRow={this.renderRow}
+					/>
           	</View>
 	    );
 	}
@@ -132,6 +134,21 @@ const styles = {
   	},
   	weekRow: {
     	flexDirection: 'row',
+  	},
+  	list: {
+		flexDirection: 'column',
+    	flex:1
+	},
+	 listViewContent: {
+     width             : DEVICE_WIDTH,  // <--- set the max width of the scrolled content
+     height            : 220,  // <--- set the max height of the scrolled content
+   	},
+	maincontainer: {
+	    backgroundColor: 'blue',
+	    flex: 1,
+	    paddingTop:20,
+	    paddingBottom:10,
+	    flexDirection: 'column'
   	}
 }
 

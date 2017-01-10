@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Text, TouchableWithoutFeedback, View } from 'react-native';
+import { CardSection } from './CardSection';
 
 class ListItem extends Component {
 
@@ -8,8 +9,10 @@ class ListItem extends Component {
 
 		return 	(
 			<TouchableWithoutFeedback>
-				<View>
-					<Text style={styles.titleStyle}>{event}</Text>
+				<View style={styles.container}>
+					<CardSection>
+						<Text style={styles.titleStyle}>{event}</Text>
+					</CardSection>
 				</View>
 			</TouchableWithoutFeedback>
 		);
@@ -17,7 +20,13 @@ class ListItem extends Component {
 }
 
 const styles = {
+	container: {
+		flex: 1,
+		paddingTop: 5
+	},
+
 	titleStyle: {
+		flex: 1,
 		fontSize: 18,
 		paddingLeft: 15
 	}
