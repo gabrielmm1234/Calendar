@@ -1,5 +1,5 @@
-# Calendar
-This is a calendar app using react-native and redux.
+# React Calendar
+This is a calendar app using react-native and redux. Uses https://github.com/xotahal/react-native-material-ui to add material desing to the layout of the app.
 
 ## Installation
  - clone the repository
