@@ -1,10 +1,12 @@
+import firebase from 'firebase';
 import { 
 	FIRST_STATE,
 	DAY_NAME_STATE,
 	MONTH_DAYS_STATE,
 	NEXT_MOMENT_STATE,
 	UPDATE_SELECTED_MOMENT,
-	UPDATE_EVENT
+	UPDATE_EVENT,
+	EVENTS_FETCH_SUCCESS
 } from './types';
 
 export const firstState = () => {
@@ -44,4 +46,14 @@ export const updateEvent  = ({ prop, value }) => {
 		type: UPDATE_EVENT,
 		payload: { prop, value }
 	};
+};
+
+export const eventsFetch  = (formatDate) => {
+	return (dispatch) => {
+	    firebase.database().ref(`/${formatDate}/event`)
+	      .on('value', (snapshot) => {
+	      	var newEvent = snapshot.val();
+	        dispatch({ type: EVENTS_FETCH_SUCCESS, payload: newEvent });
+	      });
+  	};
 };

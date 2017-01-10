@@ -1,9 +1,11 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
-import { View, Text, Dimensions } from 'react-native';
+import { View, Text, Dimensions, ListView } from 'react-native';
 import { connect } from 'react-redux';
-import { buildMonthDays, updateSelectedMoment } from '../actions';
+import { buildMonthDays, updateSelectedMoment, eventsFetch } from '../actions';
 import moment from 'moment';
 import Day from './Day';
+import ListItem from './ListItem';
 
 const DEVICE_WIDTH = Dimensions.get('window').width;
 
@@ -11,10 +13,35 @@ class Days extends Component {
 
 	componentWillMount() {
 		this.props.buildMonthDays();
-	}  
+
+		const formatDate  = moment(this.props.selectedMoment).format('DD/MM/YYYY');
+		this.props.eventsFetch(formatDate);
+		this.createDataSource(this.props);
+	}
+
+	componentWillReceiveProps(nextProps) {
+		// nextProps are the next set of props that this component will be rendered with
+		// this.props is still the old set of props
+		this.createDataSource(nextProps);
+	}
+
+	createDataSource({ events }) {
+		const ds = new ListView.DataSource({
+			rowHasChanged: (r1,r2) => r1 !== r2
+		});
+
+		this.dataSource = ds.cloneWithRows(events);
+	}
+
+	renderRow(event) {
+		return <ListItem event={event} />;
+	}
 
 	selectDate(date) {
 		this.props.updateSelectedMoment(date);
+
+		const formatDate  = moment(date).format('DD/MM/YYYY');
+		this.props.eventsFetch(formatDate);
 	}
 
 	renderMonthView(argMoment) {
@@ -89,6 +116,11 @@ class Days extends Component {
 		return (
 			<View>
             	{this.props.calendarDates.map((date) => this.renderMonthView(moment(date)))}
+            	<ListView 
+				enableEmptySections
+				dataSource={this.dataSource}
+				renderRow={this.renderRow}
+				/>
           	</View>
 	    );
 	}
@@ -104,8 +136,12 @@ const styles = {
 }
 
 const mapStateToProps = state => {
+	const events = _.map(state.initialState.events, (val, uid) => {
+		return { ... val, uid };
+	});
+
 	const { currentMonthMoment, selectedMoment, titleFormat, calendarDates, today } = state.initialState;
-	return { currentMonthMoment, selectedMoment, titleFormat, calendarDates, today, weekStart: state.dayNameState.firstDay };
+	return { currentMonthMoment, selectedMoment, titleFormat, calendarDates, today, weekStart: state.dayNameState.firstDay, events: events };
 };
 
-export default connect(mapStateToProps, { buildMonthDays, updateSelectedMoment })(Days);
+export default connect(mapStateToProps, { buildMonthDays, updateSelectedMoment, eventsFetch })(Days);

@@ -2,7 +2,8 @@ import {
   FIRST_STATE,
   MONTH_DAYS_STATE,
   NEXT_MOMENT_STATE,
-  UPDATE_SELECTED_MOMENT
+  UPDATE_SELECTED_MOMENT,
+  EVENTS_FETCH_SUCCESS
 } from '../actions/types';
 import moment from 'moment';
 
@@ -11,7 +12,8 @@ const INITIAL_STATE = {
       selectedMoment: moment(moment().format()),
       titleFormat: 'MMMM YYYY',
       calendarDates: [],
-      today: moment()
+      today: moment(),
+      events: {}
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -24,6 +26,8 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, currentMonthMoment: action.payload };
     case UPDATE_SELECTED_MOMENT:
       return { ...state, selectedMoment: action.payload };
+    case EVENTS_FETCH_SUCCESS:
+      return { ...state, events:action.payload};
     default:
       return state;
   }
